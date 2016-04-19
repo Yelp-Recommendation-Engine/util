@@ -24,3 +24,30 @@ with open('yelp_academic_dataset_review.json', 'r') as f:
 	    	data.pop("text", None) 
 	        review_coll.insert(data)
 
+with open('itemsim2.json', 'r') as f:
+        for line in f:
+        	data = json.loads(line)
+        	for business in data:
+        		item = {}
+        		item[str(business)] = data[str(business)]
+        		matrix_coll.insert(item)
+
+#Structure: user_dict[user][business]=rate
+with open('user_dict.json', 'r') as f:
+    for line in f:
+        data = json.loads(line)
+        for user in data:
+        	item = {}
+        	item[str(user)] = data[str(user)]
+        	user_ratings_coll.insert({"_id": user, user: item[str(user)]})
+    
+
+#Structure: business_dict[business][user]=rating
+with open('business_dict.json', 'r') as f:
+    for line in f:
+        data = json.loads(line)
+        for business in data:
+        	item = {}
+        	item[str(business)] = data[str(business)]
+        	business_ratings_coll.insert({"_id": business, business: item[str(business)]})
+
