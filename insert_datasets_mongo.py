@@ -8,6 +8,9 @@ db = connection.recommender
 business_coll = db.businesses
 review_coll = db.reviews
 user_coll = db.users
+user_ratings_coll = db.user_ratings
+business_ratings_coll = db.business_ratings
+matrix_coll = db.similarity_matrix
 
 with open('yelp_academic_dataset_business.json', 'r') as f:
         for line in f:
